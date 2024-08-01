@@ -22,6 +22,8 @@ let notes = [
 let currentId = 4;
 let tagList = ["important", "medium"];
 
+
+// To create a Note
 export const createNote = (req, res) => {
   const { title, content, tags } = req.body;
 
@@ -44,6 +46,8 @@ export const createNote = (req, res) => {
   }
 };
 
+
+// To get All Notes
 export const getNotes = (req, res) => {
   if (notes.length === 0) {
     return res.status(404).json({ message: "You have no Notes" });
@@ -52,6 +56,7 @@ export const getNotes = (req, res) => {
   }
 };
 
+// To get Note by ID
 export const getNoteById = (req, res) => {
   const note = notes.find((n) => n.id === parseInt(req.params.id));
   if (!note) {
@@ -60,6 +65,8 @@ export const getNoteById = (req, res) => {
   res.json(note);
 };
 
+
+// To Update Notes
 export const updateNote = (req, res) => {
   const { title, content, tags } = req.body;
   const note = notes.find((n) => n.id === parseInt(req.params.id));
@@ -72,11 +79,14 @@ export const updateNote = (req, res) => {
   res.status(200).json(note);
 };
 
+// To delete Note
 export const deleteNote = (req, res) => {
   notes = notes.filter((n) => n.id !== parseInt(req.params.id));
   res.status(200).json({ message: "Note deleted Successfully" });
 };
 
+
+// Controller to add Tags
 export const addTags = (req, res) => {
   const { tags } = req.body;
   const note = notes.find((n) => n.id === parseInt(req.params.id));
@@ -104,6 +114,8 @@ export const addTags = (req, res) => {
   }
 };
 
+
+// Controller to delete Tags
 export const deleteTags = (req, res) => {
   const { tags } = req.body;
   const note = notes.find((n) => n.id === parseInt(req.params.id));
@@ -125,6 +137,8 @@ export const deleteTags = (req, res) => {
   }
 };
 
+
+// function for querying on the basis of Tags
 export const queryNotes = (req, res) => {
   const { tag1, tag2 } = req.body;
 
