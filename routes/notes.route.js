@@ -12,6 +12,10 @@ import {
 
 export const route = Router();
 
+route.get("/",(_, res) => {
+  res.send("Hello from Note-Taking App")
+})
+
 // Query Tags Implementation
 route.get("/notes/query", queryNotes);
 
